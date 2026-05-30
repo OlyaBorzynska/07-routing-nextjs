@@ -14,14 +14,18 @@ import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import Pagination from "@/components/Pagination/Pagination";
 
-export default function NotesClient() {
+interface NotesClientProps {
+  searchTag: string | undefined;
+}
+
+export default function NotesClient({ searchTag }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const { data, isLoading, isError, isSuccess, isFetching } = useQuery({
-    queryKey: ["notes", searchQuery, currentPage],
-    queryFn: () => fetchNotes(searchQuery, currentPage),
+    queryKey: ["notes", searchQuery, currentPage, searchTag],
+    queryFn: () => fetchNotes(searchQuery, currentPage, searchTag),
     refetchOnMount: false,
     placeholderData: keepPreviousData,
   });

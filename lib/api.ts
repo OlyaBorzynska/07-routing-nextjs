@@ -13,11 +13,13 @@ export interface NotesResponse {
 export async function fetchNotes(
   searchQuery: string,
   currentPage: number,
+  searchTag?: string,
 ): Promise<NotesResponse> {
   const { data } = await axios.get<NotesResponse>(`/notes`, {
     params: {
       search: searchQuery,
       page: currentPage,
+      tag: searchTag,
     },
   });
   return data;

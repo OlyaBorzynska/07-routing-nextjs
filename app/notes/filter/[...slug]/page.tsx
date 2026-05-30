@@ -7,12 +7,12 @@ import {
 import NotesClient from "./Notes.client";
 
 type Props = {
-  params: Promise<{ filter: string[] }>;
+  params: Promise<{ slug: string[] }>;
 };
 
 export default async function NotesByTag({ params }: Props) {
-  const { filter } = await params;
-  const tag = filter[0] === "all" ? undefined : filter[0];
+  const { slug } = await params;
+  const tag = slug[0] === "all" ? undefined : slug[0];
 
   const queryClient = new QueryClient();
 

@@ -1,40 +1,24 @@
 import css from "./SidebarNotes.module.css";
 
 export default function SidebarNotes() {
+  const tags = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
+
   return (
     <ul className={css.menuList}>
-      {/* список тегів */}
       <li className={css.menuItem}>
         {" "}
         <a href={`/notes/filter/all`} className={css.menuLink}>
           All notes{" "}
         </a>{" "}
       </li>
-      <li className={css.menuItem}>
-        <a href={`/notes/filter/Todo`} className={css.menuLink}>
-          Todo
-        </a>
-      </li>
-      <li className={css.menuItem}>
-        <a href={`/notes/filter/Work`} className={css.menuLink}>
-          Work
-        </a>
-      </li>
-      <li className={css.menuItem}>
-        <a href={`/notes/filter/Personal`} className={css.menuLink}>
-          Personal
-        </a>
-      </li>
-      <li className={css.menuItem}>
-        <a href={`/notes/filter/Meeting`} className={css.menuLink}>
-          Meeting
-        </a>
-      </li>
-      <li className={css.menuItem}>
-        <a href={`/notes/filter/Shopping`} className={css.menuLink}>
-          Shopping
-        </a>
-      </li>
+      {tags.map((tag, index) => (
+        <li className={css.menuItem} key={index}>
+          {" "}
+          <a href={`/notes/filter/${tag}`} className={css.menuLink}>
+            {tag}{" "}
+          </a>{" "}
+        </li>
+      ))}
     </ul>
   );
 }
